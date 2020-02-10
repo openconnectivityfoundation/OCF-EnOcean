@@ -1,0 +1,34 @@
+{
+  "id": "http://openinterconnect.org/enoceanmapping/schemas/SmokeDetector.F6_05_02.json#",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description" : "Copyright (c) 2019 Open Connectivity Foundation, Inc. All rights reserved.",
+  "title": "Smoke Detector EEP F6-05-02",
+  "definitions": {
+    "F6_05_02": {
+      "type": "object",
+      "properties": {
+        "smokestatus": {
+          "type": "number",
+          "description": "Smoke detector",
+          "x-ocf-conversion": {
+            "x-ocf-alias": "oic.r.sensor.smoke",
+            "x-to-ocf": [
+                "if (smokestatus==0):",
+		        "   oic.r.sensor.smoke.value = false",
+	            "else if (smokestatus==16):",
+		        "   oic.r.sensor.smoke.value = true"
+            ],
+            "x-from-ocf": [
+              "N/A"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "type": "object",
+  "allOf": [
+    {"$ref": "#/definitions/F6_05_02"}
+  ],
+  "required": [ "smokestatus"]
+}

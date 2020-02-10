@@ -1,0 +1,37 @@
+{
+    "id": "http://openinterconnect.org/enoceanmapping/schemas/PushButton.F6_01_01.json#",
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "description": "Copyright (c) 2019 Open Connectivity Foundation, Inc. All rights reserved.",
+    "title": "Push Button, EEP F6-01-01",
+    "definitions": {
+        "F6_01_01": {
+            "type": "object",
+            "properties": {
+                "PushButton": {
+                    "type": "number",
+                    "description": "Simple Button with Released/Pressed Mechanism",
+                    "x-ocf-conversion": {
+                        "x-ocf-alias": "oic.r.button",
+                        "x-to-ocf": [
+                        	"if (PushButton == 1):",
+                        	"   oic.r.button.value = !oic.r.button.value"
+                        ],
+                        "x-from-ocf": [
+                            "N/A"
+                        ]
+                    }
+                }
+		
+            }
+        }
+    },
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "#/definitions/F6_01_01"
+        }
+    ],
+    "required": [
+        "PushButton"
+    ]
+}

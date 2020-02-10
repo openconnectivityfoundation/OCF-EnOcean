@@ -1,0 +1,43 @@
+{
+    "id": "http://openinterconnect.org/enoceanmapping/schemas/RockerSwitch2Rocker.F6_02_03.json#",
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "description": "Copyright (c) 2019 Open Connectivity Foundation, Inc. All rights reserved.",
+    "title": "Rocker Switch, 2 Rocker EEP F6-02-03",
+    "definitions": {
+        "F6_02_03": {
+            "type": "object",
+            "properties": {
+                "RockerAction": {
+                    "type": "number",
+                    "description": "Action Code of Rocker",
+                    "x-ocf-conversion": {
+                        "x-ocf-alias": "oic.r.button",
+                        "x-to-ocf": [
+                        	"if (RockerAction == 48):",
+                        	"       /Button1ResURI/oic.r.button.value = true",  
+                        	"else if (RockerAction == 16):",
+                        	"       /Button1ResURI/oic.r.button.value = false", 
+			            	"else if (RockerAction == 112):",
+                        	"       /Button2ResURI/oic.r.button.value = true",  
+				            "else if (RockerAction == 80):",
+                        	"       /Button2ResURI/oic.r.button.value = false"
+                        ],
+                        "x-from-ocf": [
+                            "N/A"
+                        ]
+                    }
+                }
+		
+            }
+        }
+    },
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "#/definitions/F6_02_03"
+        }
+    ],
+    "required": [
+        "RockerAction"
+    ]
+}

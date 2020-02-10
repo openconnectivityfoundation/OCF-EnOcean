@@ -1,0 +1,46 @@
+{
+  "id": "http://openinterconnect.org/enoceanmapping/schemas/TemperatureHumiditySensor.A5_04_03.json#",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description" : "Copyright (c) 2019 Open Connectivity Foundation, Inc. All rights reserved.",
+  "title": "Temperature and Humidity Sensor EEP A5-04-03",
+  "definitions": {
+    "A5_04_03": {
+      "type": "object",
+      "properties": {
+        "temperature": {
+          "type": "number",
+          "description": "Current Temperature",
+          "x-ocf-conversion": {
+            "x-ocf-alias": "oic.r.temperature",
+            "x-to-ocf": [
+                "oic.r.temperature.temperature = temperature",
+                "oic.r.temperature.units = C",
+	            "oic.r.temperature.range = [-20.0, 60.0]"
+            ],
+            "x-from-ocf": [
+              "N/A"
+            ]
+          }
+        },
+	"relativeHumidity": {
+          "type": "number",
+          "description": "Humidity",
+          "x-ocf-conversion": {
+            "x-ocf-alias": "oic.r.humidity",
+            "x-to-ocf": [
+                "oic.r.humidity.humidity = relativeHumidity"
+            ],
+            "x-from-ocf": [
+              "N/A"
+            ]
+          }
+	}
+      }
+    }
+  },
+  "type": "object",
+  "allOf": [
+    {"$ref": "#/definitions/A5_04_03"}
+  ],
+  "required": [ "temperature", "relativeHumidity"]
+}

@@ -1,0 +1,65 @@
+{
+  "id": "http://openinterconnect.org/enoceanmapping/schemas/LightTemperatureOccupancySensor.A5_08_03.json#",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description" : "Copyright (c) 2019 Open Connectivity Foundation, Inc. All rights reserved.",
+  "title": "Light, Temperature and Occupancy Sensor EEP A5-08-03",
+  "definitions": {
+    "A5_08_03": {
+      "type": "object",
+      "properties": {
+        "PIR": {
+          "type": "number",
+          "description": "Occupancy",
+          "x-ocf-conversion": {
+            "x-ocf-alias": "oic.r.sensor.presence",
+            "x-to-ocf": [
+               "if (PIR==0):",
+		       "    oic.r.sensor.presence.value = true",
+	           "else:",
+		       "    oic.r.sensor.presence.value = false"
+            ],
+            "x-from-ocf": [
+              "N/A"
+            ]
+          }
+        },
+	"lightsensor": {
+          "type": "number",
+          "description": "Current Illuminance in Lux",
+          "x-ocf-conversion": {
+            "x-ocf-alias": "oic.r.sensor.illuminance",
+            "x-to-ocf": [
+                "oic.r.sensor.illuminance.illuminance = lightsensor",
+                "oic.r.sensor.illuminance.range = [0.0, 1530.0]"
+
+            ],
+            "x-from-ocf": [
+              "N/A"
+            ]
+          }
+        },
+	"temperature": {
+          "type": "number",
+          "description": "Current Temperature",
+          "x-ocf-conversion": {
+            "x-ocf-alias": "oic.r.temperature",
+            "x-to-ocf": [
+                "oic.r.temperature.temperature = temperature",
+                "oic.r.temperature.units = C",
+	            "oic.r.temperature.range = [-30.0, 50.0]"
+            ],
+            "x-from-ocf": [
+              "N/A"
+            ]
+          }
+        }
+	
+      }
+    }
+  },
+  "type": "object",
+  "allOf": [
+    {"$ref": "#/definitions/A5_08_03"}
+  ],
+  "required": [ "PIR", "temperature", "lightsensor"]
+}

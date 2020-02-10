@@ -1,0 +1,39 @@
+{
+    "id": "http://openinterconnect.org/enoceanmapping/schemas/KeyCardSwitch.F6_04_01.json#",
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "description": "Copyright (c) 2019 Open Connectivity Foundation, Inc. All rights reserved.",
+    "title": "Key Card Switch, EEP F6-04-01",
+    "definitions": {
+        "F6_04_01": {
+            "type": "object",
+            "properties": {
+                "KeyCard": {
+                    "type": "number",
+                    "description": "Valid Key Card inserted or Taken out",
+                    "x-ocf-conversion": {
+                        "x-ocf-alias": "oic.r.keycardswitch",
+                        "x-to-ocf": [
+                        	"if (KeyCard == 112):",
+                        	"   oic.r.keycardswitch.stateofcard = 'validCardInserted'",
+			            	"else:",
+				            "   oic.r.keycardswitch.stateofcard = 'validCardNotInserted'"
+                        ],
+                        "x-from-ocf": [
+                            "N/A"
+                        ]
+                    }
+                }
+		
+            }
+        }
+    },
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "#/definitions/F6_04_01"
+        }
+    ],
+    "required": [
+        "KeyCard"
+    ]
+}

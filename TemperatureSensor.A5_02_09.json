@@ -1,0 +1,33 @@
+{
+  "id": "http://openinterconnect.org/enoceanmapping/schemas/TemperatureSensor.A5_02_09.json#",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description" : "Copyright (c) 2019 Open Connectivity Foundation, Inc. All rights reserved.",
+  "title": "Temperature Sensor EEP A5-02-09",
+  "definitions": {
+    "A5_02_09": {
+      "type": "object",
+      "properties": {
+        "temperature": {
+          "type": "number",
+          "description": "Current Temperature",
+          "x-ocf-conversion": {
+            "x-ocf-alias": "oic.r.temperature",
+            "x-to-ocf": [
+				"oic.r.temperature.temperature = temperature",
+				"oic.r.temperature.units = C",
+				"oic.r.temperature.range = [40.0, 80.0]"
+            ],
+            "x-from-ocf": [
+              "N/A"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "type": "object",
+  "allOf": [
+    {"$ref": "#/definitions/A5_02_09"}
+  ],
+  "required": [ "temperature"]
+}
